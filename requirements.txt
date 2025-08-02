@@ -1,6 +1,7 @@
 keras==3.8.0
 tensorflow==2.15.0
 streamlit==1.35.0
-numpy==1.23.5
+h5py==3.10.0
 pillow
 matplotlib
+numpy
