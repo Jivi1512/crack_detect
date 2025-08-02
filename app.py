@@ -27,7 +27,6 @@ if img is not None:
         label= class_labels[predicted_class]
     st.success(f"Prediction: {label}\n")
     st.info(f"Confidence: {confidence*100:.2f} %")
-    st.pyplot(plt.figure(figsize=(4, 4)))
     plt.imshow(pil_img)
     plt.title(f"{class_labels[predicted_class]} {confidence*100:.2f} %")
     plt.axis("off")
