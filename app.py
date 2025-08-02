@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 import tensorflow as tf
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.models import load_model
+from keras.preprocessing import image 
+from keras.models import load_model
 import streamlit as st
 
 model= load_model("model_alexnet.h5")
@@ -14,7 +14,7 @@ st.write("Upload an image to check for cracks.")
 
 img=st.camera_input("Take a picture of the surface")
 if img is not None:
-    pil_img = Image.open(img)
+    pil_img = Image.open(img).convert("RGB")
     img_resize=pil_img.resize((224,224))
     img_array=image.img_to_array(img_resize)
     img_array=img_array/255.0
@@ -27,6 +27,7 @@ if img is not None:
         label= class_labels[predicted_class]
     st.success(f"Prediction: {label}\n")
     st.info(f"Confidence: {confidence*100:.2f} %")
+    st.pyplot(plt.figure(figsize=(4, 4)))
     plt.imshow(pil_img)
     plt.title(f"{class_labels[predicted_class]} {confidence*100:.2f} %")
     plt.axis("off")
